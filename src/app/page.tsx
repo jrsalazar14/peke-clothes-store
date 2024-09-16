@@ -1,101 +1,109 @@
-import Image from "next/image";
+import Link from 'next/link'
+import Image from 'next/image'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import Logo from '@/components/Logo'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-[#FFFAF0] text-[#4A4A4A]">
+      <header className="bg-[#E6F3FF] py-4 shadow-md">
+        <div className="container mx-auto flex justify-between items-center">
+          <Link href="/" className="flex items-center">
+            <Logo />
+          </Link>
+          <nav>
+            <ul className="flex space-x-4">
+              <li><Link href="/bebes" className="hover:underline text-[#FF9999] font-medium">Bebés</Link></li>
+              <li><Link href="/ninos-pequenos" className="hover:underline text-[#FF9999] font-medium">Niños Pequeños</Link></li>
+              <li><Link href="/ninos" className="hover:underline text-[#FF9999] font-medium">Niños Grandes</Link></li>
+            </ul>
+          </nav>
         </div>
+      </header>
+
+      <main className="container mx-auto mt-8 px-4">
+        <section className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-4 text-[#FF9999]">Bienvenidos a Peke Clothes</h1>
+          <p className="text-xl text-[#4A4A4A]">¡Ropa adorable y cómoda para tus pequeños, desde recién nacidos hasta adolescentes!</p>
+        </section>
+
+        <Carousel className="mb-12">
+          <CarouselContent>
+            {[
+              { src: "/peke-logo.png?height=250&width=600&text=Colección+de+Bebés", alt: "Colección de ropa para bebés" },
+              { src: "/peke-logo.png?height=250&width=600&text=Colección+de+Niños+Pequeños", alt: "Colección de ropa para niños pequeños" },
+              { src: "/peke-logo.png?height=250&width=600&text=Colección+de+Niños", alt: "Colección de ropa para niños grandes" },
+            ].map((img, index) => (
+              <CarouselItem key={index}>
+                <Image src={img.src} alt={img.alt} width={800} height={400} className="rounded-lg shadow-md" />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+
+        <section className="flex flex-wrap justify-center gap-6 mb-12">
+          {[
+            { title: "Bebés (0-2 años)", href: "/bebes" },
+            { title: "Niños Pequeños (2-5 años)", href: "/ninos-pequenos" },
+            { title: "Niños Grandes (6-14 años)", href: "/ninos-grandes" },
+          ].map((category, index) => (
+            <Card key={index} className="bg-white border-[#FF9999] shadow-md hover:shadow-lg transition-shadow duration-300">
+              <CardContent className="p-4">
+                <h2 className="text-xl font-semibold mb-2 text-[#FF9999]">{category.title}</h2>
+                <div className="w-[300px] h-[200px] bg-[#E6F3FF] flex items-center justify-center text-[#FF9999] font-bold text-lg rounded-md mb-4">
+                  {category.title}
+                </div>
+                <Button asChild className="w-full bg-[#FF9999] hover:bg-[#FF7777] text-white">
+                  <Link href={category.href}>Comprar Ahora</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </section>
+
+        <section className="bg-[#E6F3FF] p-8 rounded-lg mb-12 shadow-md">
+          <h2 className="text-2xl font-bold mb-4 text-[#FF9999]">¿Por qué elegir Peke Clothes?</h2>
+          <ul className="list-disc list-inside space-y-2 text-[#4A4A4A]">
+            <li>Ropa importada de USA</li>
+            <li>Telas de alta calidad y comodidad</li>
+            <li>Diseños adorables para todas las edades</li>
+            <li>Precios accesibles para familias en crecimiento</li>
+            <li>Devoluciones y cambios fáciles</li>
+          </ul>
+        </section>
+
+        <section className="text-center mb-12 bg-white p-8 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold mb-4 text-[#FF9999]">Únete a Nuestro Boletín</h2>
+          <p className="mb-4 text-[#4A4A4A]">¡Mantente actualizado con nuestras últimas colecciones y ofertas exclusivas!</p>
+          <form className="flex flex-col sm:flex-row justify-center gap-2">
+            <input
+              type="email"
+              placeholder="Ingresa tu correo electrónico"
+              className="border rounded-md px-4 py-2 w-full sm:w-auto text-[#4A4A4A]"
+              aria-label="Correo electrónico para boletín"
+            />
+            <Button type="submit" className="bg-[#FF9999] hover:bg-[#FF7777] text-white">Suscribirse</Button>
+          </form>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="bg-[#E6F3FF] text-[#4A4A4A] py-8 mt-12">
+        <div className="container mx-auto text-center">
+          <p>&copy; 2024 Peke Clothes. Todos los derechos reservados.</p>
+          <nav className="mt-4">
+            <ul className="flex justify-center space-x-4">
+              <li><Link href="/sobre-nosotros" className="hover:underline">Sobre Nosotros</Link></li>
+              <li><Link href="/contacto" className="hover:underline">Contacto</Link></li>
+              <li><Link href="/preguntas-frecuentes" className="hover:underline">Preguntas Frecuentes</Link></li>
+              <li><Link href="/politica-de-devoluciones" className="hover:underline">Política de Devoluciones</Link></li>
+            </ul>
+          </nav>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
