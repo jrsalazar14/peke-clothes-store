@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Button } from "@/components/ui/button"
-import { ChevronLeftIcon } from '@radix-ui/react-icons'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Footer } from '@/components/Footer'
 import { productsByCategory, Category, Product, ProductSize } from '../page'
+import { Header } from '@/components/Header'
 
 export default function ProductPage({ params }: { params: { category: Category; id: string } }) {
     const [product, setProduct] = useState<Product | null>(null)
@@ -33,14 +32,7 @@ export default function ProductPage({ params }: { params: { category: Category; 
 
     return (
         <div className="min-h-screen bg-background text-text">
-            <header className="bg-light-bg py-4 shadow-md">
-                <div className="container mx-auto">
-                    <Link href={`/products/${params.category}`} className="inline-flex items-center text-primary hover:underline">
-                        <ChevronLeftIcon className="mr-2" />
-                        Regresar a {params.category === 'babies' ? 'Bebés' : params.category === 'toddlers' ? 'Niños Pequeños' : 'Niños Grandes'}
-                    </Link>
-                </div>
-            </header>
+            <Header />
 
             <main className="container mx-auto mt-8 px-4">
                 <div className="flex flex-col md:flex-row gap-8">

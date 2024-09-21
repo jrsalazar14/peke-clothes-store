@@ -4,28 +4,13 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import Logo from '@/components/Logo'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background text-text">
-      <header className="bg-light-bg py-6 shadow-md">
-        <div className="container mx-auto flex flex-col items-center">
-          <div className="flex items-center mb-4">
-            <Logo className="mr-4" />
-            <h1 className="text-6xl font-bold">
-              <span className="text-secondary">Peke</span>
-              <span className="text-primary"> Clothes</span>
-            </h1>
-          </div>
-          <nav className="mt-2">
-            <ul className="flex space-x-6">
-              <li><Link href="/products/babies" className="hover:underline text-primary font-medium">Bebés</Link></li>
-              <li><Link href="/products/toddlers" className="hover:underline text-primary font-medium">Niños Pequeños</Link></li>
-              <li><Link href="/products/kids" className="hover:underline text-primary font-medium">Niños Grandes</Link></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <main className="container mx-auto mt-8 px-4">
         <Carousel className="mb-12">
@@ -90,19 +75,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <footer className="bg-light-bg text-text py-8 mt-12">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 Peke Clothes. Todos los derechos reservados.</p>
-          <nav className="mt-4">
-            <ul className="flex justify-center space-x-4">
-              <li><Link href="/sobre-nosotros" className="hover:underline">Sobre Nosotros</Link></li>
-              <li><Link href="/contacto" className="hover:underline">Contacto</Link></li>
-              <li><Link href="/preguntas-frecuentes" className="hover:underline">Preguntas Frecuentes</Link></li>
-              <li><Link href="/politica-de-devoluciones" className="hover:underline">Política de Devoluciones</Link></li>
-            </ul>
-          </nav>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

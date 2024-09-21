@@ -1,18 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu"
-import { ChevronDownIcon } from '@radix-ui/react-icons'
 import { ProductCard } from '@/components/ProductCard'
 import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
 
 export type Category = keyof typeof productsByCategory;
 export type ProductSize = 'S' | 'M' | 'L' | 'XL';
@@ -102,32 +94,7 @@ export default function CategoryPage({ params }: { params: { category: Category 
 
     return (
         <div className="min-h-screen bg-background text-text">
-            <header className="bg-[#E6F3FF] py-4 shadow-md">
-                <div className="container mx-auto flex justify-between items-center">
-                    <Link href="/" className="text-2xl font-bold">
-                        <span className="text-[#94dff6]">Peke</span>
-                        <span className="text-[#FF9FD5]"> Clothes</span>
-                    </Link>
-                    <nav>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="outline" className="text-[#FF9FD5] border-[#FF9FD5]">Categorías <ChevronDownIcon className="ml-2 h-4 w-4" /></Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                <DropdownMenuItem>
-                                    <Link href="/products/babies" className="text-[#FF9FD5]">Bebés</Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <Link href="/products/toddlers" className="text-[#FF9FD5]">Niños Pequeños</Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <Link href="/products/kids" className="text-[#FF9FD5]">Niños Grandes</Link>
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </nav>
-                </div>
-            </header>
+            <Header />
 
             <main className="container mx-auto mt-8 px-4">
                 <h1 className="text-3xl font-bold mb-6 text-primary">Ropa para {categoryName}</h1>
