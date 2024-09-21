@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { ChevronLeftIcon } from '@radix-ui/react-icons'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
+import { Footer } from '@/components/Footer'
 import { productsByCategory, Category, Product, ProductSize } from '../page'
 
 export default function ProductPage({ params }: { params: { category: Category; id: string } }) {
@@ -62,7 +62,7 @@ export default function ProductPage({ params }: { params: { category: Category; 
                             <label htmlFor="size-select" className="block text-sm font-medium text-text mb-2">Talla</label>
                             <Select onValueChange={(value) => setSelectedSize(value as ProductSize)}>
                                 <SelectTrigger id="size-select" className="w-full">
-                                    <SelectValue placeholder="Select a size" />
+                                    <SelectValue placeholder="Selecciona una talla" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {availableSizes.map((size) => (
@@ -81,7 +81,7 @@ export default function ProductPage({ params }: { params: { category: Category; 
                                 disabled={!selectedSize}
                             >
                                 <SelectTrigger id="quantity-select" className="w-full">
-                                    <SelectValue placeholder="Select quantity" />
+                                    <SelectValue placeholder="Selecciona una cantidad" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {[...Array(maxQuantity)].map((_, i) => (
@@ -103,11 +103,7 @@ export default function ProductPage({ params }: { params: { category: Category; 
                 </div>
             </main>
 
-            <footer className="bg-light-bg text-text py-8 mt-12">
-                <div className="container mx-auto text-center">
-                    <p>&copy; 2023 Peke Clothes. All rights reserved.</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     )
 }

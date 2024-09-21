@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
     DropdownMenu,
@@ -14,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ChevronDownIcon } from '@radix-ui/react-icons'
 import { ProductCard } from '@/components/ProductCard'
+import { Footer } from '@/components/Footer'
 
 export type Category = keyof typeof productsByCategory;
 export type ProductSize = 'S' | 'M' | 'L' | 'XL';
@@ -155,19 +154,7 @@ export default function CategoryPage({ params }: { params: { category: Category 
                 </div>
             </main>
 
-            <footer className="bg-[#E6F3FF] text-[#4A4A4A] py-8 mt-12">
-                <div className="container mx-auto text-center">
-                    <p>&copy; 2023 Peke Clothes. Todos los derechos reservados.</p>
-                    <nav className="mt-4">
-                        <ul className="flex justify-center space-x-4">
-                            <li><Link href="/about" className="hover:underline text-[#FF9FD5]">Sobre Nosotros</Link></li>
-                            <li><Link href="/contact" className="hover:underline text-[#FF9FD5]">Contacto</Link></li>
-                            <li><Link href="/faq" className="hover:underline text-[#FF9FD5]">Preguntas Frecuentes</Link></li>
-                            <li><Link href="/returns-policy" className="hover:underline text-[#FF9FD5]">Política de Devoluciones</Link></li>
-                        </ul>
-                    </nav>
-                </div>
-            </footer>
+            <Footer />
         </div>
     )
 }
