@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import {
@@ -7,8 +9,12 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { ChevronDownIcon } from '@radix-ui/react-icons'
+import { useCart } from '@/app/contexts/CartContext';
 
 export function Header() {
+    const cartContext = useCart();
+    const itemCount = cartContext.cart.reduce((sum, item) => sum + item.quantity, 0);
+
     return (
         <header className="bg-light-bg py-4 shadow-md">
             <div className="container mx-auto flex justify-between items-center px-4">
@@ -37,7 +43,7 @@ export function Header() {
                     </DropdownMenu>
                     <Link href="/cart">
                         <Button variant="ghost" className="text-primary">
-                            Carrito (0)
+                            Carrito ({itemCount})
                         </Button>
                     </Link>
                 </nav>
